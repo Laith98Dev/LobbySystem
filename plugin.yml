@@ -1,0 +1,18 @@
+name: LobbySystem
+main: LobbySystem\MainClass
+version: 1.1.0
+api: [3.0.0, 4.0.0]
+author: LaithYT
+commands:
+  lbinfo:
+    description: "Plugin-Infos Command"
+  youtube:
+    description: "Show Teamlist Command"
+  spawn:
+    description: "Teleport To Spawn"
+  lobby:
+    description: "Teleport To Lobby"
+  hub:
+    description: "Teleport To Hub"
+  fly:
+    description: "Enabled / Disbled Fly"
