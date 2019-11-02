@@ -1,0 +1,23 @@
+---
+# ------------------------------------------
+# |         CopyRight 2019 LaithYoutuber   |
+# |  Facebook: Laith A Al Haddad           |
+# |  Youtube: LaithYoutuber                |
+# |   Github: laith98                      |
+# ------------------------------------------
+
+prefix: "§8[§bSystem§8]§7 "
+
+// Games Command Join
+
+bedwars: "bw join"
+
+1vs1: "1vs1 join"
+
+skywars: "sw join"
+
+skymlg: "sm join"
+
+ffa: "ffa randomjoin"
+
+---
