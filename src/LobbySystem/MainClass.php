@@ -29,14 +29,12 @@ use pocketmine\utils\Terminal;
 use pocketmine\utils\TextFormat as T;
 
 class MainClass extends PluginBase implements Listener{
-
-    public $prefix = $this->cfg->get("prefix");
 	
     public function onEnable(){
         $this->getLogger()->info(" Enabled 	LobbySystem By LaithYoutuber ");
 		@mkdir($this->getDataFolder());
-		$this->saveResource("Config.yml");
-		$this->cfg = new Config($this->getDataFolder() . "Config.yml", Config::YAML);
+		$this->saveDefaultConfig();
+        $this->cfg = $this->getConfig();
 		/*
 			To Get Config Soon Add $this->cfg->get("");
 		*/
@@ -44,18 +42,21 @@ class MainClass extends PluginBase implements Listener{
 
     public function onJoin(PlayerJoinEvent $playerJoinEvent){
         $player = $playerJoinEvent->getPlayer();
-        $playerJoinEvent->setJoinMessage($this->prefix . " §c[§b+§c] §e" . $player->getName());
+		$prefix = $this->cfg->get("prefix");
+        $playerJoinEvent->setJoinMessage($prefix . " §c[§b+§c] §e" . $player->getName());
 		$player->setAllowFlight(false);
         $this->getItems($player);
     }
 
     public function onQuit(PlayerQuitEvent $playerQuitEvent){
         $player = $playerQuitEvent->getPlayer();
-        $playerQuitEvent->setQuitMessage($this->prefix . " §c[§b-§c] §e" . $player->getName());
+		$prefix = $this->cfg->get("prefix");
+        $playerQuitEvent->setQuitMessage($prefix . " §c[§b-§c] §e" . $player->getName());
     }
 
     public function getItems(Player $player){
-
+		
+		$prefix = $this->cfg->get("prefix");
         $player->getInventory()->clearAll();
         $player->getArmorInventory()->clearAll();
         $compass = Item::get(Item::COMPASS);
@@ -78,9 +79,8 @@ class MainClass extends PluginBase implements Listener{
     public function setCompass(PlayerInteractEvent $playerInteractEvent){
         $player = $playerInteractEvent->getPlayer();
 		$server = $this->getServer();
-		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
+		$prefix = $this->cfg->get("prefix");
         $item = $player->getInventory()->getItemInHand();
-		$cfg->save();
         if ($item->getCustomName() == "§7Teleporter"){
             $player->getInventory()->clearAll();
             $vs = Item::get(Item::DIAMOND_SWORD);
@@ -206,34 +206,39 @@ class MainClass extends PluginBase implements Listener{
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
         if ($command == "lbyoutube") {
-            $sender->sendMessage($this->prefix . "LobbySystem By LaithYT");
+			$prefix = $this->cfg->get("prefix");
+            $sender->sendMessage($prefix . "LobbySystem By LaithYT");
             $sender->sendMessage("§n§4Youtube§r§8: LaithYoutuber");
             $sender->sendMessage("§eEnjoy");
 			return true;
         }
         if ($command == "lbinfo"){
-            $sender->sendMessage($this->prefix."LobbySystem by LaithYT");
+			$prefix = $this->cfg->get("prefix");
+            $sender->sendMessage($prefix."LobbySystem by LaithYT");
             return true;
         }
 		if ($command == "hub"){
 			$sender->teleport($sender->getServer()->getDefaultLevel()->getSafeSpawn());
-			$sender->sendMessage($this->prefix." Teleport To Hub");
+			$prefix = $this->cfg->get("prefix");
+			$sender->sendMessage($prefix." Teleport To Hub");
 			$sender->getArmorInventory()->clearAll();
 			$sender->getInventory()->clearAll();
 			$this->getItems($sender);
 			return true;
 		}
 		if ($command == "lobby"){
+			$prefix = $this->cfg->get("prefix");
 			$sender->teleport($sender->getServer()->getDefaultLevel()->getSafeSpawn());
-			$sender->sendMessage($this->prefix." Teleport To Lobby");
+			$sender->sendMessage($prefix." Teleport To Lobby");
 			$sender->getArmorInventory()->clearAll();
 			$sender->getInventory()->clearAll();
 			$this->getItems($sender);
 			return true;
 		}
 		if ($command == "spawn"){
+			$prefix = $this->cfg->get("prefix");
 			$sender->teleport($sender->getServer()->getDefaultLevel()->getSafeSpawn());
-			$sender->sendMessage($this->prefix." Teleport To Spawn");
+			$sender->sendMessage($prefix." Teleport To Spawn");
 			$sender->getArmorInventory()->clearAll();
 			$sender->getInventory()->clearAll();
 			$this->getItems($sender);
@@ -243,18 +248,19 @@ class MainClass extends PluginBase implements Listener{
         if ($sender instanceof Player) {
             if ($sender->hasPermission("fly.command") or $sender->isOp()) {
                 if (!$sender->getAllowFlight()) {
+					$prefix = $this->cfg->get("prefix");
                     $sender->setAllowFlight(true);
-                    $sender->sendMessage($this->prefix. "§eFly Enabled");
+                    $sender->sendMessage($prefix. "§eFly Enabled");
                     return true;
                 } else {
                     if ($sender->getAllowFlight()) {
                         $sender->setAllowFlight(false);
-                        $sender->sendMessage($this->prefix. "§4Fly Disbled");
+                        $sender->sendMessage($prefix. "§4Fly Disbled");
                         return true;
                     }
                 }
             } else {
-                $sender->sendMessage($this->prefix. "You do not have a rank containing flying");
+                $sender->sendMessage($prefix. "You do not have a rank containing flying");
             }
         } else {
             $sender->sendMessage("Use Command In-Game :D");
