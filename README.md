@@ -14,3 +14,6 @@
 
 [![](https://poggit.pmmp.io/shield.state/LobbySystem)](https://poggit.pmmp.io/p/LobbySystem)
 <a href="https://poggit.pmmp.io/p/LobbySystem"><img src="https://poggit.pmmp.io/shield.state/LobbySystem"></a>
+
+[![](https://poggit.pmmp.io/shield.api/LobbySystem)](https://poggit.pmmp.io/p/LobbySystem)
+<a href="https://poggit.pmmp.io/p/LobbySystem"><img src="https://poggit.pmmp.io/shield.api/LobbySystem"></a>
