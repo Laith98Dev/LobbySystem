@@ -1,6 +1,6 @@
 name: LobbySystem
 main: LobbySystem\MainClass
-version: 1.1.0
+version: 1.1.0-Beta
 api: [3.0.0, 4.0.0]
 author: LaithYT
 commands:
