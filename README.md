@@ -7,9 +7,9 @@
 # Download Phar Soon
 
 # Features
-[×] Easy Setup
-[×] Edit from Config
-[×] Join Games Compass Edit Command From Config 
+- [x] Easy Setup
+- [x] Edit from Config
+- [x] Join Games Compass Edit Command From Config 
  Fun
 
 [![](https://poggit.pmmp.io/shield.state/LobbySystem)](https://poggit.pmmp.io/p/LobbySystem)
